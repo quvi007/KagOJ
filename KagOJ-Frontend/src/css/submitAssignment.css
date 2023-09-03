@@ -1,0 +1,63 @@
+.submit-assignment-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .submit-assignment-container h1 {
+    text-align: center;
+  }
+  
+  .assignment-form {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .assignment-title h2 {
+    margin: 0;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .deadline-timer p {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  
+  .attachment label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .attachment input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  .edit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+  }
+  
+  .submit-button:hover, .edit-button:hover {
+    background-color: #0056b3;
+  }
+  

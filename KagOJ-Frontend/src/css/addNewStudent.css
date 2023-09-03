@@ -1,0 +1,65 @@
+    .h1-container {
+        margin-top: 20px;
+        margin-left: 0px;
+        text-align: center;
+        background-color: #007bff; /* Background color */
+        color: #fff; /* Text color */
+        padding: 10px; /* Padding around the text */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+        width: 900px;
+        height: 80px;
+
+    }
+
+    .add-student-page {
+        max-width: 950px;
+        margin-left: 50px;
+        padding: 20px;
+        text-align: center;
+    }
+  
+  .search-sort {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .student-list {
+    leftMargin: 50px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .student {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0px;
+  }
+  
+  .student.selected {
+    background-color: #00b7ff;
+    color: #fff;
+  }
+  
+  .add-button {
+    background-color: #00b521;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 750px;
+  }
+  
+  .add-button:hover {
+    background-color: #77ff00;
+  }
+  

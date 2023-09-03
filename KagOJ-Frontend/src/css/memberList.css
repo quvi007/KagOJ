@@ -1,0 +1,68 @@
+/* src/styles.css */
+.h1-container {
+    margin-top: 20px;
+    margin-left: 50px;
+    text-align: center;
+    background-color: #007bff; /* Background color */
+    color: #fff; /* Text color */
+    padding: 10px; /* Padding around the text */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+    width: 900px;
+    height: 80px;
+
+}
+  
+  /* Hover effect for the h1 container */
+  .h1-container:hover {
+    background-color: #0056b3; /* Hover background color */
+  }
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 55px
+  }
+  
+.student-list {
+    padding: 50px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .student {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .student:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row color */
+  }
+  
+  .student img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .student-info {
+    flex-grow: 1; /* Expand to fill available space */
+  }
+  
+  .student-info h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .student-info p {
+    margin: 0;
+    color: #777;
+  }
+  

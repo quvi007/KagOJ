@@ -1,0 +1,40 @@
+.available-assignments-container {
+    max-width: 600px;
+    /* margin: 0 auto; */
+    padding: 20px;
+  }
+  
+  .available-assignments-container h1 {
+    text-align: center;
+  }
+  
+  .available-assignments-container button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .available-assignments-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .assignment-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .assignment-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 700px;
+    height: fit-content;
+  }
+  

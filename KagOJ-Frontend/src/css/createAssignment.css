@@ -1,0 +1,82 @@
+.assignment-form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+  gap: 10px;
+}
+
+.assignment-form label {
+  font-weight: bold;
+}
+
+.assignment-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 250px;
+
+}
+.assignment-form input,
+.assignment-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.assignment-form input[type="file"] {
+  padding: 100;
+  border: none;
+}
+
+.assignment-form input[type="datetime-local"] {
+  padding: 12px;
+}
+
+.assignment-form button[type="submit"] {
+  width: auto;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.assignment-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+
+.create-assignment-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-assignment-container h1 {
+    text-align: center;
+    margin-left: 25px;
+  }
+  
+  .create-assignment-button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .create-assignment-button:hover {
+    background-color: #0056b3;
+  }
+  
