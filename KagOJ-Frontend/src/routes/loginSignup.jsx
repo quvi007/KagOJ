@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Tab, Tabs } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row, Tab, Tabs } from 'react-bootstrap';
+import { login, signup } from '../auth';
 import '../css/LoginSignup.css'; // Import your custom CSS file for styling
 
 const LoginSignup = () => {
@@ -22,11 +23,15 @@ const LoginSignup = () => {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here using loginData state
+    console.log(loginData);
+    login({email:loginData.username,password:loginData.password});
   };
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Handle signup logic here using signupData state
+    console.log(signupData);
+    signup({email:signupData.email,password:signupData.password,name:signupData.fullName});
   };
 
   return (

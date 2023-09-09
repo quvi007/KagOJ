@@ -4,11 +4,14 @@ const router = express.Router()
 
 const { isPasswordValid, makeHash } = require('./authServices');
 const AuthRepository = require('../database/Auth/authRepository');
+const ProfileRepository = require('../database/Auth/profileRepository');
 
 
 router.post('/login', async (req, res, next) => {
     const { email, password } = req.body;
-
+    console.log("Inside login");
+    console.log(email);
+    
     // Fetching userData from database 
 
     let user = await AuthRepository.fetchByEmail(email);
@@ -17,7 +20,7 @@ router.post('/login', async (req, res, next) => {
 
     if (!user || !user.success) {
         return res.status(500).json({
-            error: userInfo.error
+            error: user.error
         });
     }
 
@@ -26,7 +29,7 @@ router.post('/login', async (req, res, next) => {
     }
 
     user = user.data[0];
-
+    // console.log(user);
     const hashPass = user.password;
 
     //  Add more info if needed
@@ -39,12 +42,13 @@ router.post('/login', async (req, res, next) => {
             authority: user.authority
         }
         const token = jwt.sign(data, process.env.JWT_SECRET);
+        let profile = await ProfileRepository.fetch(user.user_id);
         // await cacheRepository.update(token, login, type);
 
         // getAndDelete(login + type + 'cache');
         // createCache(login + type + 'cache', { token });
-
-        res.json({token: token}).status(200);
+        console.log("logg ined in successfully");
+        res.json({token: token,name:profile.data[0].name}).status(200);
 
     } else {
         res.status(401).send({ error: 'Invalid email or password' });
@@ -99,7 +103,7 @@ router.post('/register', async (req, res, next) => {
     // getAndDelete(login + type + 'cache');
     // createCache(login + type + 'cache', { token });
 
-    res.json({token: token}).status(200);
+    res.json({token: token,name}).status(200);
 });
 
 module.exports = router;
