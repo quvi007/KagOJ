@@ -14,12 +14,15 @@ const courseController = require('./controllers/courseController');
 const semesterController = require('./controllers/semesterController');
 const problemController = require('./controllers/problemController');
 const submissionController = require('./controllers/submissionController');
+const testController = require('./controllers/testController');
+
 
 const {isValidJWTTokenLevel1} = require('./authentication/authMiddlewares');
 
 
 const limiter = require('./services/rateLimiter');
 const { processSubmissions } = require('./judger/judger');
+const { test } = require('shelljs');
 require('./database/connectDB');
 
 const app = express();
@@ -43,12 +46,14 @@ processSubmissions();
 
 
 app.use('/api/auth', authController);
-app.use(isValidJWTTokenLevel1);
+// app.use(isValidJWTTokenLevel1);
 app.use('/api/profile', profileController)
 app.use('/api/course', courseController)
 app.use('/api/semesters', semesterController);
 app.use('/api/problem', problemController)
 app.use('/api/submission', submissionController)
+app.use('/api/test', testController);
+
 
 
 app.all('*', (req, res) => {
