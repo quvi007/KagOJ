@@ -1,0 +1,16 @@
+/* LoginPage.css */
+
+.login-signup-card {
+  background-color: #f7f1f1;
+  border-radius: 10px;
+  box-shadow: 0 10px 12px #1508ff1a;
+  padding: 20px;
+}
+
+#login-signup-tabs {
+  background-color: #007bff; /* Primary color for tabs */
+  color: #fff; /* Text color for tabs */
+  border-radius: 10px;
+}
+
+/* Add more styles as needed to customize your page further */

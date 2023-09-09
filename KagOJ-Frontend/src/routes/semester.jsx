@@ -1,12 +1,25 @@
-import { Form, Outlet, useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
+import { Form, Outlet, useLoaderData, useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 import { getSemester } from "../semesters";
-
+const cookies = new Cookies();
 export async function loader({ params }) {
     const semester = await getSemester(params.semesterId);
     return { semester };
 }
 
 export default function Semester() {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if(cookies.get('name')==undefined || cookies.get('token')==null){
+      console.log("Logged out!!!");
+      navigate("/login");
+      console.log("Logged out!!!");
+    }else{
+      console.log(cookies.get('name'));
+    }
+  }, []);
   const { semester } = useLoaderData();
 
   return (

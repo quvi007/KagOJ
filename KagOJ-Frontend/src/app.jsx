@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+// src/AddStudentPage.js
+import React, { useEffect } from 'react';
 import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider
+    createBrowserRouter,
+    Navigate,
+    RouterProvider
 } from "react-router-dom";
 import "./index.css";
 import './scss/styles.scss';
@@ -23,6 +23,8 @@ import { action as semesterDeleteAction } from './routes/semesterDelete';
 import SemesterEdit, { action as semesterEditAction, loader as semesterEditLoader } from './routes/semesterEdit';
 import SemestersIndex from './routes/semestersIndex';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { checkAuth } from './auth';
 import AddNewStudent from './routes/addNewStudent';
 import Assignment, { loader as assignmentLoader } from './routes/assignment';
 import AssignmentCreate, { action as assignmentCreateAction, loader as assignmentCreateLoader } from './routes/assignmentCreate';
@@ -38,12 +40,8 @@ import ProblemDetails, { loader as ProblemLoader } from './routes/problemDetails
 import SubmissionContainer, { loader as SubmissionLoader } from './routes/submission';
 import SubmitAssignment from './routes/submitAssigmnet';
 
-import Cookies from "universal-cookie";
-import LoginSignup from './routes/loginSignup';
-const cookies = new Cookies();
 
 const router = createBrowserRouter([
-  
   {
     path: "/",
     element: <Navigate to="/semesters"/>
@@ -206,34 +204,28 @@ const router = createBrowserRouter([
     element: <SubmissionContainer/>,
     errorElement: <ErrorPage/>,
     loader: SubmissionLoader,
-  },
-  {
-    path:'/*',
-    element: <Navigate to="/semesters"/> 
   }
- 
 ]);
 
-const router2 = createBrowserRouter([
-  {
-    path:"/login",
-    element:<LoginSignup/>,
-    errorElement:<ErrorPage/>,
-  },
-  {
-    path: "/*",
-    element: <Navigate to="/login"/>
-  },
-]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    
-    {
-      ( cookies.get('token') == undefined || cookies.get('token') == null) ?  
-      <RouterProvider router={router2}/>:
-        <RouterProvider router={router}/>
-    }
-    
-  </React.StrictMode>,
-)
+
+  
+
+
+
+export default function App() {
+
+    const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    checkAuth(dispatch);
+  }, []);
+
+    return (
+      
+       
+      
+    );
+  }
+  

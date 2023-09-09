@@ -1,8 +1,10 @@
 import sortBy from "sort-by";
 
 import axios from "axios";
-
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6InJha2liQGdtYWlsLmNvbSIsImF1dGhvcml0eSI6MCwiaWF0IjoxNjkzNzE5MjM2fQ.gVqIxscXLl0OH0_TRz3Qk6hPdWz_MIUmmJr3hPG8yjQ";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+const token = cookies.get('token');
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6InJha2liQGdtYWlsLmNvbSIsImF1dGhvcml0eSI6MCwiaWF0IjoxNjkzNzE5MjM2fQ.gVqIxscXLl0OH0_TRz3Qk6hPdWz_MIUmmJr3hPG8yjQ";
 
 export async function getSemesters(query) {
   const config = {

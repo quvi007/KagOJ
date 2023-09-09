@@ -1,5 +1,8 @@
-import { Outlet, useLoaderData, NavLink, useNavigation, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLoaderData, useNavigate, useNavigation } from "react-router-dom";
+import Cookies from "universal-cookie";
+import Navbar from "../components/Navbar";
 import { getSemesters } from "../semesters";
+const cookies = new Cookies();
 
 export async function loader() {
   const semesters = await getSemesters();
@@ -7,10 +10,22 @@ export async function loader() {
 }
 
 export default function SemestersRoot() {
+  
+  
     const { semesters } = useLoaderData();
     const navigation = useNavigation();
     const navigate = useNavigate();
+  
 
+    if(cookies.get('name')==undefined || cookies.get('name')==null){
+      console.log("Logged outsdfsd!!!");
+      
+      console.log("Logged out!!!");
+    }else{
+      console.log(cookies.get('name'));
+    }
+
+      console.log("vallage na");
     return (
       <>
         <div id="sidebar">
@@ -77,8 +92,10 @@ export default function SemestersRoot() {
             )}
           </nav>
         </div>
+       
         <div id="detail"
           className={navigation.state === "loading" ? "loading" : ""}>
+             <Navbar/>
           <Outlet/>
         </div>
       </>
