@@ -4,14 +4,14 @@ const cookies = new Cookies();
 
 const COOKIE_AGE=315360000
 
-export const checkAuth=(dispatcher)=>{
-    //console.log(cookies.get('token'))
-    console.log("Inside checkAuth");
-    if(cookies.get('token')==undefined || cookies.get('token')==null)
-        dispatcher(logoutDispatch())
-    else
-        dispatcher(loginDispatch())
-}
+// export const checkAuth=(dispatcher)=>{
+//     //console.log(cookies.get('token'))
+//     console.log("Inside checkAuth");
+//     if(cookies.get('token')==undefined || cookies.get('token')==null)
+//         dispatcher(logoutDispatch())
+//     else
+//         dispatcher(loginDispatch())
+// }
 
 
 // export const register=(data,dispatcher)=>{

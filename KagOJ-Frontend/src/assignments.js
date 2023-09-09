@@ -1,6 +1,8 @@
 import sortBy from "sort-by";
 
 import axios from "axios";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export async function getAssignments(courseId, semesterId) {
     const res = await axios.get('http://localhost:3000/assignments');
