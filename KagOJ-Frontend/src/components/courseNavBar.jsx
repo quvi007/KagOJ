@@ -16,7 +16,7 @@ export default function CourseNavBar({course, semester, tabName}) {
                                 isActive
                                   ? "nav-link active"
                                   : "nav-link"
-                            } aria-current="page" to={`/semesters/${semester.id}/courses/${course.course_id}/practice`}>Practice</NavLink>
+                            } aria-current="page" to={`/semesters/${semester.semester_id}/courses/${course.course_id}/practice`}>Practice</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink replace className={
@@ -24,7 +24,7 @@ export default function CourseNavBar({course, semester, tabName}) {
                                 isActive
                                   ? "nav-link active"
                                   : "nav-link"
-                            } to={`/semesters/${semester.id}/courses/${course.course_id}/assignments_list`}>Assignments</NavLink>
+                            } to={`/semesters/${semester.semester_id}/courses/${course.course_id}/assignments_list`}>Assignments</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink replace className={
@@ -32,7 +32,7 @@ export default function CourseNavBar({course, semester, tabName}) {
                                 isActive
                                   ? "nav-link active"
                                   : "nav-link"
-                            } to={`/semesters/${semester.id}/courses/${course.course_id}/members`}>Members</NavLink>
+                            } to={`/semesters/${semester.semester_id}/courses/${course.course_id}/members`}>Members</NavLink>
                         </li>
                     </ul>
                     </div>

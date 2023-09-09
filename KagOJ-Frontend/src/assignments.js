@@ -2,22 +2,27 @@ import sortBy from "sort-by";
 
 import axios from "axios";
 
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6InJha2liQGdtYWlsLmNvbSIsImF1dGhvcml0eSI6MCwiaWF0IjoxNjk0MTk1NzM0fQ.pHGv5yhOcy8UP7MCyLx5CTt71EWDOZUa5mMZy3BkqBU";
+
 export async function getAssignments(courseId, semesterId) {
-    const res = await axios.get('http://localhost:3000/assignments');
-    const assignments = res.data;
-    const filteredAssignments = [];
-    assignments.forEach((assignment) => {
-      if (assignment.courseId === courseId && assignment.semesterId === semesterId) {
-        filteredAssignments.unshift(assignment);
+    const config = {
+      headers: {
+        authorization: token
       }
-    })
-    const retData = filteredAssignments.sort(sortBy("title"));
+    }
+    const res = await axios.get(`http://localhost:3005/api/assignment/${semesterId}/${courseId}`, config);
+    const assignments = res.data;
+    const retData = assignments.sort(sortBy("name"));
     console.log(retData);
     return retData;
 }
 
 export async function createAssignment(assignment, courseId, semesterId) {
-  let id = Math.random().toString(36).substring(2, 9);
+  const config = {
+    headers: {
+      authorization: token
+    }
+  }
   assignment = { ...assignment, id: id, courseId: courseId, semesterId: semesterId };
   const res = await axios.post('http://localhost:3000/assignments', assignment);
   return res.data;

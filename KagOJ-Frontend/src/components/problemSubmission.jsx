@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { Form, useNavigate, useNavigation } from "react-router-dom";
 
 // import "../../css/problem.css";
   
@@ -14,27 +14,6 @@ import { useNavigate, useNavigation } from "react-router-dom";
 
 const verdicts = 
 ["Accepted","TLE","TLE","MLE","RTE","SE","WA","In Queue"]
-
-// const StyledTableCell = styled(TableCell)(({ theme }) => ({
-//     [`&.${tableCellClasses.head}`]: {
-//       backgroundColor: theme.palette.common.black,
-//       color: theme.palette.common.white,
-//     },
-//     [`&.${tableCellClasses.body}`]: {
-//       fontSize: 14,
-//     },
-//   }));
-  
-//   const StyledTableRow = styled(TableRow)(({ theme }) => ({
-//     '&:nth-of-type(odd)': {
-//       backgroundColor: theme.palette.action.hover,
-//     },
-//     // hide last border
-//     '&:last-child td, &:last-child th': {
-//       border: 0,
-//     },
-//   }));
-  
 
   const ProblemSubmission = (props) => {
     
@@ -76,6 +55,22 @@ const verdicts =
     // );
 
     return (
+      <>
+
+        <Form method="get">
+          <select name="verdict" id="verdict">
+            <option value="8">All</option>
+            <option value="0">Accepted</option>
+            <option value="1">TLE</option>
+            <option value="3">MLE</option>
+            <option value="4">RTE</option>
+            <option value="5">SE</option>
+            <option value="6">WA</option>
+            <option value="7">In Queue</option>
+          </select>
+          <button type="submit">Filter</button>
+        </Form>
+
         <table className="table" >
         
             <thead>
@@ -103,6 +98,7 @@ const verdicts =
             </tbody>
          
         </table>
+      </>
       );
 
   };

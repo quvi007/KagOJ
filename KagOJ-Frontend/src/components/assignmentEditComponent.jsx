@@ -6,30 +6,20 @@ export default function AssignmentEditComponent({assignment, course, semester}) 
         <>
             <Form method="post" id="semester-form">
             <p>
-                <span>Title</span>
+                <span>Name</span>
                 <input
-                placeholder="Assignment Title"
-                aria-label="Assignment title"
+                placeholder="Assignment Name"
+                aria-label="Assignment name"
                 type="text"
-                name="title"
-                defaultValue={assignment.title}
+                name="name"
+                defaultValue={assignment.name}
                 />
             </p>
-            {/* <label>
-                <span>Avatar URL</span>
-                <input
-                placeholder="https://example.com/avatar.jpg"
-                aria-label="Avatar URL"
-                type="text"
-                name="avatar"
-                defaultValue={(semester.avatar ? semester.avatar : "https://placekitten.com/g/200/200")}
-                />
-            </label> */}
             <label>
-                <span>Details</span>
+                <span>Statement</span>
                 <textarea
-                name="details"
-                defaultValue={assignment.details}
+                name="statement"
+                defaultValue={assignment.statement}
                 rows={6}
                 />
             </label>

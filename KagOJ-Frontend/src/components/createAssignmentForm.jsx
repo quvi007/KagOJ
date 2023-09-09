@@ -2,41 +2,21 @@ import React from 'react';
 import '../css/assignmentForm.css'; 
 
 
-function CreateAssignmentForm({ assignmentData, setAssignmentData, onSubmit }) {
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setAssignmentData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setAssignmentData((prevData) => ({
-      ...prevData,
-      attachment: file,
-    }));
-  };
-
+function CreateAssignmentForm() {
   return (
     <form className="assignment-form" onSubmit={onSubmit}>
       <div>
-        <label>Assignment Title:</label>
+        <label>Assignment Name:</label>
         <input
           type="text"
-          name="title"
-          value={assignmentData.title}
-          onChange={handleInputChange}
+          name="name"
           required
         />
       </div>
       <div>
-        <label>Assignment Details:</label>
+        <label>Assignment Statement:</label>
         <textarea
-          name="details"
-          value={assignmentData.details}
-          onChange={handleInputChange}
+          name="statement"
           required
         />
       </div>
@@ -45,7 +25,6 @@ function CreateAssignmentForm({ assignmentData, setAssignmentData, onSubmit }) {
         <input
           type="file"
           accept=".pdf, .jpg, .jpeg, .png, .zip"
-          onChange={handleFileChange}
         />
       </div>
       <div>

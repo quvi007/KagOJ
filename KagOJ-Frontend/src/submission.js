@@ -19,8 +19,8 @@ export async function submitSolution (submission) {
 }
 
 
-export async function fetchSubmissions (problem_id){
-  const res = await axios.get(`http://localhost:3005/api/submission/getSubmissions/${problem_id}`, {
+export async function fetchSubmissions (problem_id, verdict){
+  const res = await axios.get(`http://localhost:3005/api/submission/getSubmissions/${problem_id}/${verdict}`, {
     headers: { authorization: token },
     });
     return res.data;

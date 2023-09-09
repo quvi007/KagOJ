@@ -33,7 +33,7 @@ export default function CoursePractice() {
                         </div>
                     </div>
                 </div>
-                <PracticeProblems/>
+                <PracticeProblems problems={practiceProblems}/>
             </div>
         </>
     );

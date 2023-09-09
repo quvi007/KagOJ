@@ -133,33 +133,54 @@ const router = createBrowserRouter([
       },
     ]
   },
+  // {
+  //   path: "/semesters/:semesterId/courses/:courseId/assignments",
+  //   element: <AssignmentsRoot/>,
+  //   loader: assignmentsRootLoader,
+  //   children: [
+  //     {
+  //       path: ":assignmentId",
+  //       element: <Assignment/>,
+  //       loader: assignmentLoader,
+  //       children: [
+  //         {
+  //           path: "edit",
+  //           element: <AssignmentEdit/>,
+  //           loader: assignmentEditLoader,
+  //           action: assignmentEditAction
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: "new",
+  //       element: <AssignmentCreate/>,
+  //       action: assignmentCreateAction,
+  //       loader: assignmentCreateLoader,
+  //     },
+  //     {
+  //       path: ":assignmentId/delete",
+  //       action: assignmentDeleteAction
+  //     }
+  //   ]
+  // }, 
   {
     path: "/semesters/:semesterId/courses/:courseId/assignments",
     element: <AssignmentsRoot/>,
     loader: assignmentsRootLoader,
     children: [
       {
+        index: true,
+        element: <h2>Hello</h2>
+      },
+      {
         path: ":assignmentId",
-        element: <Assignment/>,
-        loader: assignmentLoader,
-        children: [
-          {
-            path: "edit",
-            element: <AssignmentEdit/>,
-            loader: assignmentEditLoader,
-            action: assignmentEditAction
-          }
-        ]
+        element: <h1>Hello There</h1>
       },
       {
         path: "new",
         element: <AssignmentCreate/>,
         action: assignmentCreateAction,
         loader: assignmentCreateLoader,
-      },
-      {
-        path: ":assignmentId/delete",
-        action: assignmentDeleteAction
       }
     ]
   }, 

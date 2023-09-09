@@ -5,21 +5,21 @@ import { useLoaderData } from "react-router-dom";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-
-
 import CodeEditor from '../components/codeEditor';
 import ProblemStatement from '../components/problemStatement';
 import ProblemSubmission from '../components/problemSubmission';
 import { fetchProblem, fetchSubmissions } from '../submission';
 
-
-export async function loader({ params }) {
+export async function loader({ request, params }) {
+    const url = new URL(request.url);
+    let verdict =  url.searchParams.get("verdict");
     const semesterId = params.semesterId;
     const courseId = params.courseId;
     const problemId = params.problemId;
     const problem = await fetchProblem(semesterId, courseId, problemId);
     console.log("problem:: ",problem);
-    const submissions = await fetchSubmissions(problemId);
+    if (verdict == null) verdict = "8"
+    const submissions = await fetchSubmissions(problemId, verdict);
     console.log("submissions:: ",submissions);
     return { problem, submissions };
 }

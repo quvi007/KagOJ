@@ -2,7 +2,7 @@ import sortBy from "sort-by";
 
 import axios from "axios";
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6InJha2liQGdtYWlsLmNvbSIsImF1dGhvcml0eSI6MCwiaWF0IjoxNjkzNzE5MjM2fQ.gVqIxscXLl0OH0_TRz3Qk6hPdWz_MIUmmJr3hPG8yjQ"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6InJha2liQGdtYWlsLmNvbSIsImF1dGhvcml0eSI6MCwiaWF0IjoxNjk0MTk1NzM0fQ.pHGv5yhOcy8UP7MCyLx5CTt71EWDOZUa5mMZy3BkqBU";
 
 export async function getCourses(semester_id) {
   const config = {
@@ -29,6 +29,7 @@ export async function createCourse(semester_id, course) {
 }
 
 export async function getCourse(semester_id, course_id) {
+  console.log("Here now");
   const config = {
     headers: {
       authorization: token

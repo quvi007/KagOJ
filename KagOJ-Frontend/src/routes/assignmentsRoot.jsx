@@ -8,12 +8,13 @@ export async function loader( {params} ) {
     const courseId = params.courseId;
     const assignments = await getAssignments(courseId, semesterId);
     const semesterName = (await getSemester(semesterId)).name;
-    const courseName = (await getCourse(courseId)).name;
+    const courseName = (await getCourse(semesterId, courseId)).name;
     return { assignments, semesterId, courseId, semesterName, courseName };
 }
 
 export default function AssignmentsRoot() {
     const { assignments, semesterId, courseId, semesterName, courseName } = useLoaderData();
+    
     const navigation = useNavigation();
     const navigate = useNavigate();
 
@@ -50,9 +51,9 @@ export default function AssignmentsRoot() {
             {assignments.length ? (
               <ul>
                 {assignments.map((assignment) => (
-                  <li key={assignment.id}>
+                  <li key={assignment.assignment_id}>
                     <NavLink
-                      to={`${assignment.id}`}
+                      to={`${assignment.assignment_id}`}
                       className={({ isActive, isPending }) =>
                         isActive
                           ? "active"
@@ -61,9 +62,9 @@ export default function AssignmentsRoot() {
                           : ""
                       }
                     >
-                      {assignment.title ? (
+                      {assignment.name ? (
                         <>
-                          {assignment.title}
+                          {assignment.name}
                         </>
                       ) : (
                         <i>No Name</i>

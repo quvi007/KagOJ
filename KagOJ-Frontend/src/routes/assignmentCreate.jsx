@@ -13,7 +13,7 @@ export async function action({ request, params }) {
 
 export async function loader( {params} ) {
     const semester = await getSemester(params.semesterId);
-    const course = await getCourse(params.courseId);
+    const course = await getCourse(params.semesterId, params.courseId);
     return { semester, course };
 }
 
