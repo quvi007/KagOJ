@@ -7,6 +7,21 @@ const testRepository = require('../database/testRepository');
 router.get('/:problem_id', getAllByProblemId = async (req, res) => {
     const problem_id = req.params.problem_id;
     const result = await testRepository.getAllByProblemId(problem_id);
+    for(let i=0;i<result.data.length;i++){
+        const test_id = result.data[i].test_id;
+        try {
+            const input = fs.readFileSync(`file/input/${test_id}.in`, 'utf8');
+            result.data[i].input = input;
+        } catch (err) {
+            console.error(err);
+        }
+        try {
+            const output = fs.readFileSync(`file/output/${test_id}.out`, 'utf8');
+            result.data[i].output = output;
+        } catch (err) {
+            console.error(err);
+        }
+    }
     res.status(200).send(result.data);
 });
 
