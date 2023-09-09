@@ -10,9 +10,9 @@ export async function getAssignments(courseId, semesterId) {
         authorization: token
       }
     }
-    const res = await axios.get(`http://localhost:3005/api/assignment/${semesterId}/${courseId}`, config);
+    const res = await axios.get(`http://localhost:3005/api/assignment/${semesterId}/${courseId}/active`, config);
     const assignments = res.data;
-    const retData = assignments.sort(sortBy("name"));
+    const retData = assignments;//.sort(sortBy("name"));
     console.log(retData);
     return retData;
 }

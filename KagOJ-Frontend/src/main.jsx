@@ -38,6 +38,7 @@ import SubmitAssignment from './routes/submitAssigmnet';
 import CreateAssignment from './routes/createAssignment';
 import ProblemDetails, { loader as ProblemLoader } from './routes/problemDetails';
 import SubmissionContainer, { loader as SubmissionLoader } from './routes/submission';
+import ProblemsRoot, { loader as problemsRootLoader } from './routes/problemsRoot';
 
 
 const router = createBrowserRouter([
@@ -184,6 +185,33 @@ const router = createBrowserRouter([
       }
     ]
   }, 
+  {
+    path: "/semesters/:semesterId/courses/:courseId/problems",
+    element: <ProblemsRoot/>,
+    loader: problemsRootLoader,
+    children: [
+      {
+        index: true,
+        element: <h2>Hello</h2>
+      },
+      {
+        path: ":problemId",
+        element: <ProblemDetails/>,
+        loader: ProblemLoader,
+        errorElement: <ErrorPage/>,
+      },
+      {
+        path: ":problemId/submissions/:submissionId",
+        element: <SubmissionContainer/>,
+        errorElement: <ErrorPage/>,
+        loader: SubmissionLoader,
+      },
+      {
+        path: "new",
+        element: <CreateProblem/>
+      },
+    ]
+  }, 
   //dummy paths - for pages that are not integrated yet
   {
     path: "/members",
@@ -209,22 +237,6 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage/>,
     // loader: semestersRootLoader,
   },
-  {
-    path: "/semesters/:semesterId/courses/:courseId/practice/new",
-    element: <CreateProblem/>
-  },
-  {
-    path: "/semesters/:semesterId/courses/:courseId/practice/:problemId",
-    element: <ProblemDetails/>,
-    loader: ProblemLoader,
-    errorElement: <ErrorPage/>,
-  },
-  {
-    path: "/semesters/:semesterId/courses/:courseId/practice/:problemId/submission/:submissionId",
-    element: <SubmissionContainer/>,
-    errorElement: <ErrorPage/>,
-    loader: SubmissionLoader,
-  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
