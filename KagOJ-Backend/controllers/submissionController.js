@@ -1,6 +1,6 @@
 const express = require('express');
 const fs = require('fs');
-const judge = require('../judger/judger');
+const {addToQueue} = require('../judger/judger');
 const router = express.Router()
 
 const submissionRepository = require('../database/submissionRepository');
@@ -16,6 +16,7 @@ router.post('/submit', submit = async (req, res) => {
     const submission = req.body;
     console.log(submission);
     const {problem_id, code, language_id} = submission;
+    //const submission_id = 11;
     const result = await submissionRepository.createSubmission({problem_id, author_id: user.user_id, language_id});
     if( !result.success || result.data.length === 0 ){
         res.status(500).send({"error":"Internal server error"});
@@ -23,8 +24,8 @@ router.post('/submit', submit = async (req, res) => {
     }
     console.log(result);
     
+    
     const submission_id = result.data[0].create_submission;
-    // const submission_id = 11;
     try {
         fs.writeFileSync(`file/submissions/${submission_id}.cpp`, code);
         console.log('File written successfully');
@@ -38,16 +39,12 @@ router.post('/submit', submit = async (req, res) => {
       const inputs = tests.data.map(test => test.test_id);
       console.log(inputs);
       // return;
-      const verdicts = await judge(submission_id,inputs);
-      let status = 0;
-      for( let i = 0 ; i < verdicts.length ; i++ ){
-          const verdict = verdicts[i];
-          if( verdict.result !== 0 ) status = 6;
-      }
-      await submissionRepository.updateVerdict(submission_id,status, status);
+     
+      
+      
       
       // console.log(result);
-    
+      addToQueue({submission_id, inputs, language_id});
 });
 
 
