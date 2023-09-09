@@ -30,7 +30,23 @@ router.get('/:problem_id/:test_id', getTestByProblemIdTestId = async (req, res) 
     const problem_id = req.params.problem_id;
     const test_id = req.params.test_id;
     const result = await testRepository.getTestByProblemIdTestId(problem_id, test_id);
-    res.status(200).send(result.data);
+    if (result.data.length === 0) {
+        return res.status(404).send({ message: 'Test not found' });
+    }
+    const test = result.data[0];
+    try {
+        const input = fs.readFileSync(`file/input/${test_id}.in`, 'utf8');
+        test.input = input;
+    } catch (err) {
+        console.error(err);
+    }
+    try {
+        const output = fs.readFileSync(`file/output/${test_id}.out`, 'utf8');
+        test.output = output;
+    } catch (err) {
+        console.error(err);
+    }
+    res.status(200).send(test);
 });
 
 // add test
