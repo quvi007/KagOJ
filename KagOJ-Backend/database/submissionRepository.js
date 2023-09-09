@@ -32,6 +32,13 @@ class SubmissionRepository extends Repository {
         return result;
     }
 
+    getAllByProblemIdAndVerdict = async function (problem_id, user_id, verdict) {
+        const query = `select * from submission where problem_id=$1 and author_id=$2 and final_verdict=$3 order by submission_id desc`;
+        const params = [problem_id,user_id, verdict];
+        const result = await this.query(query,params);
+        return result;
+    }
+
     getSubmissionById = async function (submission_id,user_id) {
         const query = `select * from submission where submission_id=$1 and author_id=$2`;
         const params = [submission_id,user_id];

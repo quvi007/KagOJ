@@ -13,8 +13,8 @@ const profileController = require('./controllers/profileController');
 const courseController = require('./controllers/courseController');
 const semesterController = require('./controllers/semesterController');
 const problemController = require('./controllers/problemController');
+const assignmentController = require('./controllers/assignmentController');
 const submissionController = require('./controllers/submissionController');
-
 const {isValidJWTTokenLevel1} = require('./authentication/authMiddlewares');
 
 
@@ -46,8 +46,10 @@ app.use(isValidJWTTokenLevel1);
 app.use('/api/profile', profileController)
 app.use('/api/course', courseController)
 app.use('/api/semesters', semesterController);
-app.use('/api/problem', problemController)
-app.use('/api/submission', submissionController)
+app.use('/api/problem', problemController);
+app.use('/api/assignment', assignmentController);
+app.use('/api/submission', submissionController);
+
 
 
 app.all('*', (req, res) => {

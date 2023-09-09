@@ -11,7 +11,7 @@ const VerdictRepository = require('../database/verdictRepository');
 
 
 router.post('/submit', submit = async (req, res) => {
-   
+    console.log("here\n");
     const user = req.user;
     const submission = req.body;
     console.log(submission);
@@ -86,10 +86,12 @@ router.get('/getSubmission/:submission_id', getSubmission = async (req, res) => 
   res.status(200).send(submission);
 });
 
-router.get('/getSubmissions/:problem_id', getSubmissions = async (req, res) => {
+router.get('/getSubmissions/:problem_id/:verdict', getSubmissions = async (req, res) => {
   const user = req.user;
   const problem_id = req.params.problem_id;
-  const result = await submissionRepository.getAllByProblemId(problem_id,user.user_id);
+  let result = "8";
+  if (req.params.verdict === "8") result = await submissionRepository.getAllByProblemId(problem_id,user.user_id);
+  else result = await submissionRepository.getAllByProblemIdAndVerdict(problem_id, user.user_id, req.params.verdict);
   if( !result.success || result.data.length === 0 ){
       res.status(500).send({"error":"Internal server error"});
       return;
