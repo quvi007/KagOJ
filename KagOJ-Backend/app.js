@@ -19,6 +19,7 @@ const {isValidJWTTokenLevel1} = require('./authentication/authMiddlewares');
 
 
 const limiter = require('./services/rateLimiter');
+const { processSubmissions } = require('./judger/judger');
 require('./database/connectDB');
 
 const app = express();
@@ -38,7 +39,7 @@ app.use(limiter);
 // app.use('/auto_uploads', express.static('uploads'))
 
 // const apiVersion = "/api/v1.0.0";
-
+processSubmissions();
 
 
 app.use('/api/auth', authController);
