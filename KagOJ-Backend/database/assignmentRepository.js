@@ -14,6 +14,7 @@ class AssignmentRepository extends Repository {
                             AND assignment_course.course_id = $2`;
         const params = [semester_id, course_id];
         const result = await this.query(query, params);
+
         return result;
     }
 
@@ -22,7 +23,8 @@ class AssignmentRepository extends Repository {
                             JOIN assignment_course
                             ON assignment.assignment_id = assignment_course.assignment_id
                             WHERE assignment_course.semester_id = $1
-                            AND assignment_course.course_id = $2`;
+                            AND assignment_course.course_id = $2
+                            AND assignment.deadline < CURRENT_TIMESTAMP`;
         const params = [semester_id, course_id];
         const result = await this.query(query, params);
         return result;
@@ -33,7 +35,8 @@ class AssignmentRepository extends Repository {
                             JOIN assignment_course
                             ON assignment.assignment_id = assignment_course.assignment_id
                             WHERE assignment_course.semester_id = $1
-                            AND assignment_course.course_id = $2`;
+                            AND assignment_course.course_id = $2
+                            AND assignment.deadline > CURRENT_TIMESTAMP`;
         const params = [semester_id, course_id];
         const result = await this.query(query, params);
         return result;

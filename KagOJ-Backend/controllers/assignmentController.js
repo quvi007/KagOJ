@@ -9,6 +9,19 @@ router.get('/:semester_id/:course_id', async (req, res) => {
     res.status(200).send(result.data);
 });
 
+// Get all active assignmnents in a course
+router.get('/:semester_id/:course_id/active', async (req, res) => {
+    const result = await AssignmentRepository.fetchActiveAssignmentsInCourse(req.params.semester_id, req.params.course_id);
+    res.status(200).send(result.data);
+});
+
+// Get all past assignmnents in a course
+router.get('/:semester_id/:course_id/past', async (req, res) => {
+    const result = await AssignmentRepository.fetchPastAssignmentsInCourse(req.params.semester_id, req.params.course_id);
+    res.status(200).send(result.data);
+});
+
+
 // Get a specific assignment in a course
 router.get('/:semester_id/:course_id/:assignment_id', async (req, res) => {
     const result = await AssignmentRepository.fetchAssignmentById(req.params.semester_id, req.params.course_id, req.params.assignment_id);
