@@ -50,6 +50,25 @@ class CourseRepository extends Repository {
         const result = await this.query(query, params);
         return result;
     }
+
+    // new queries for problems
+    // add problem to course
+    addProblem = async function(course_id, problem_id) {
+        const query = `INSERT INTO problem_course (course_id, problem_id) VALUES ($1, $2) returning *`;
+        const params = [course_id, problem_id];
+        const result = await this.query(query, params);
+        return result;
+    }
+
+    // get all problems of a course
+    getProblems = async function(course_id) {
+        const query = `select problem_course.*,problem.name from problem_course 
+        join problem on problem.problem_id = problem_course.problem_id
+        where problem_course.course_id=$1`;
+        const params = [course_id];
+        const result = await this.query(query, params);
+        return result;
+    }
 }
 
 module.exports = new CourseRepository();

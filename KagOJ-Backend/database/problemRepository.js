@@ -13,6 +13,24 @@ class ProblemRepository extends Repository {
         return result;
     }
 
+    fetchAllProblemsByCourseId = async function(course_id) {
+        const query = `select problem.* from problem_course 
+        join problem on problem.problem_id = problem_course.problem_id
+        where course_id=$1`;
+        const params = [course_id];
+        const result = await this.query(query, params);
+        return result;
+    }
+
+    fetchAllProblemsByExamId = async function (exam_id) {
+        const query = `select problem.* from problem_exam 
+        join problem on problem.problem_id = problem_exam.problem_id
+        where exam_id=$1`;
+        const params = [exam_id];
+        const result = await this.query(query,params);
+        return result;
+    }
+
     fetchProblemById = async function (semester_id, course_id, problem_id) {
         const query = `SELECT * FROM problem WHERE semester_id = $1 AND course_id = $2 AND problem_id = $3`;
         const params = [semester_id, course_id, problem_id];
