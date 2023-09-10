@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Container, Form, Row, Tab, Tabs } from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row, Tab, Tabs } from 'react-bootstrap';
 import { login, signup } from '../auth';
 import '../css/LoginSignup.css'; // Import your custom CSS file for styling
 
@@ -24,7 +24,7 @@ const LoginSignup = () => {
     e.preventDefault();
     // Handle login logic here using loginData state
     console.log(loginData);
-    login({email:loginData.username,password:loginData.password});
+    login({email:loginData.email,password:loginData.password});
   };
 
   const handleSignupSubmit = (e) => {
@@ -36,8 +36,52 @@ const LoginSignup = () => {
 
   return (
     <Container className="mt-5">
-      <Row>
+      <Container>
+        <h1 className="text-center mt-5 mb-4">Welcome to kagOJ Online Judge!</h1>
+        <br/>
+        <br/>
+        <Row className="justify-content-center">
+          <Col md={4}>
+            <Card className="login-signup-card">
+              <Card.Img variant="top" src="../../public/coding.svg" style={{ width: '200px', height: '200px', display: 'block', margin: '0 auto'}} />
+              <Card.Body>
+                <Card.Title>Solve Problems</Card.Title>
+                <Card.Text>
+                Solve various algorithmic problems on LightOJ. All the problems are categorized. Kick start problem solving from the warm-up problems.                
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={4}>
+            <Card className="login-signup-card">
+              <Card.Img variant="top" src="../../public/buet_logo.png" style={{ width: '200px', height: '200px', display: 'block', margin: '0 auto'}} />
+              <Card.Body>
+                <Card.Title>Host Onlines!</Card.Title>
+                <Card.Text>
+                Participate in onlines arranged by BUET CSE and the community. And host onlines without any fee on kagOJ.                
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={4}>
+            <Card className="login-signup-card">
+              <Card.Img variant="top" src="../../public/trophy.svg" style={{ width: '200px', height: '200px', display: 'block', margin: '0 auto'}} />
+              <Card.Body>
+                <Card.Title>CGPA 4.00</Card.Title>
+                <Card.Text>
+                We will be introducing various new features which will help you to obtain CGPA 4.00. Stay tuned!
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+
+
+      <br/>
+      <Row >
         <Col md={{ span: 6, offset: 3 }}>
+          
           <div className="login-signup-card">
             <Tabs
               id="login-signup-tabs"
@@ -47,14 +91,14 @@ const LoginSignup = () => {
             >
               <Tab eventKey="login" title="Login">
                 <Form onSubmit={handleLoginSubmit}>
-                  <Form.Group controlId="loginUsername">
-                    <Form.Label>Username</Form.Label>
+                  <Form.Group controlId="loginEmail">
+                    <Form.Label>Email</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Enter your username"
-                      value={loginData.username}
+                      placeholder="Enter your email"
+                      value={loginData.email}
                       onChange={(e) =>
-                        setLoginData({ ...loginData, username: e.target.value })
+                        setLoginData({ ...loginData, email: e.target.value })
                       }
                       required
                     />
@@ -71,6 +115,7 @@ const LoginSignup = () => {
                       required
                     />
                   </Form.Group>
+                  <br/>
                   <Button variant="primary" type="submit">
                     Login
                   </Button>
@@ -105,21 +150,6 @@ const LoginSignup = () => {
                       required
                     />
                   </Form.Group>
-                  <Form.Group controlId="signupUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Choose a username"
-                      value={signupData.username}
-                      onChange={(e) =>
-                        setSignupData({
-                          ...signupData,
-                          username: e.target.value,
-                        })
-                      }
-                      required
-                    />
-                  </Form.Group>
                   <Form.Group controlId="signupPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
@@ -135,6 +165,7 @@ const LoginSignup = () => {
                       required
                     />
                   </Form.Group>
+                  <br/>
                   <Button variant="primary" type="submit">
                     Sign Up
                   </Button>
