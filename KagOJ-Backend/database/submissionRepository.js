@@ -38,6 +38,14 @@ class SubmissionRepository extends Repository {
         const result = await this.query(query,params);
         return result;
     }
+
+    // get latest submission for each problem of a user undedr a exam
+    getLatestSubmissionOfUser = async function (exam_id,user_id) {
+        const query = `select * from submission where author_id=$1 and problem_id in (select problem_id from problem where exam_id=$2)`;
+        const params = [user_id,exam_id];
+        const result = await this.query(query,params);
+        return result;
+    }
 }
 
 module.exports = new SubmissionRepository();

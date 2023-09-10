@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router()
 
 const examRepository = require('../database/examRepository');
+const gradeRepository = require('../database/gradeRepository');
+
 
 router.get('/running', fetch = async (req, res) => {
     const result = await examRepository.getRunningExamByUserId(req.user.user_id);
@@ -38,6 +40,7 @@ router.post('/add', add = async (req, res) => {
 
 router.post('/addProblem', addProblem = async (req, res) => {
     const result = await examRepository.addProblemToExam(req.body.exam_id, req.body.problem_id);
+    const grade = await gradeRepository.createGrades(req.body.course_id, req.body.exam_id, req.body.problem_id);
     res.status(200).send(result.data[0]);
 });
 
